@@ -1,0 +1,151 @@
+/* --- PROFESSIONAL CSS RESET --- */
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --accent: #2d3436; /* Charcoal Black */
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* --- HEADER --- */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+p.subtitle {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* --- THE STAGE (OUTFIT AREA) --- */
+.stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Side by side */
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+/* Image handling to ensure they look uniform regardless of size */
+.img-wrapper {
+    width: 100%;
+    height: 400px; /* Fixed height makes it look organized */
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This crops the image to fill the box perfectly */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/* --- CONTROLS --- */
+.controls {
+    text-align: center;
+}
+
+button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(45, 52, 54, 0.3);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button:hover {
+    background-color: #000;
+    transform: scale(1.02);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- LOADING SPINNER --- */
+.loader {
+    display: none; /* Hidden by default */
+    width: 24px;
+    height: 24px;
+    border: 3px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 600px) {
+    .stage {
+        grid-template-columns: 1fr; /* Stack vertically on phones */
+    }
+    .img-wrapper {
+        height: 350px;
+    }
+}
