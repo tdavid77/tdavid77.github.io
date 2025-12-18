@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Smart Closet</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4; }
+        .outfit-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
+        .item { background: white; padding: 10px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        img { width: 300px; height: 400px; object-fit: cover; border-radius: 5px; }
+        button { padding: 15px 30px; font-size: 18px; background: #2ea44f; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #2c974b; }
+        .status { color: #666; font-size: 0.9em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>My Outfit of the Day</h1>
+<button onclick="generateOutfit()">Roll the Dice 🎲</button>
+<p class="status" id="status-text">Loading wardrobe...</p>
+
+<div class="outfit-container">
+    <div class="item">
+        <h3>Top</h3>
+        <img id="top-img" src="" alt="Top will appear here">
+    </div>
+    <div class="item">
+        <h3>Bottom</h3>
+        <img id="bottom-img" src="" alt="Bottom will appear here">
+    </div>
+</div>
+
+<script>
+    // --- CONFIGURATION ---
+    const username = 'YOUR_USERNAME'; // e.g., 'johndoe'
+    const repo = 'YOUR_REPO_NAME';    // e.g., 'my-closet'
+    const path = 'images';            // The folder name where you put photos
+    // ---------------------
+
+    let tops = [];
+    let bottoms = [];
+
+    async function loadWardrobe() {
+        const status = document.getElementById('status-text');
+
+        // 1. Ask GitHub for the list of files in the 'images' folder
+        const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`);
+
+        if (!response.ok) {
+            status.innerText = "Error: Could not find images. Check your username/repo settings.";
+            return;
+        }
+
+        const data = await response.json();
+
+        // 2. Sort them into Tops and Bottoms based on filename
+        // Tip: Name your files like "top-red-shirt.jpg" or "bottom-jeans.jpg"
+        data.forEach(file => {
+            const name = file.name.toLowerCase();
+            if (name.includes('top')) {
+                tops.push(file.download_url);
+            } else if (name.includes('bottom') || name.includes('pant') || name.includes('skirt')) {
+                bottoms.push(file.download_url);
+            }
+        });
+
+        status.innerText = `Wardrobe loaded: ${tops.length} tops, ${bottoms.length} bottoms.`;
+    }
+
+    function generateOutfit() {
+        if (tops.length === 0 || bottoms.length === 0) {
+            alert("Wait for the wardrobe to load, or make sure you have files named 'top' and 'bottom'!");
+            return;
+        }
+
+        const randomTop = tops[Math.floor(Math.random() * tops.length)];
+        const randomBottom = bottoms[Math.floor(Math.random() * bottoms.length)];
+
+        document.getElementById("top-img").src = randomTop;
+        document.getElementById("bottom-img").src = randomBottom;
+    }
+
+    // Run this when page opens
+    loadWardrobe();
+</script>
+</body>
+</html>
