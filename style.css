@@ -1,151 +1,161 @@
-/* --- PROFESSIONAL CSS RESET --- */
+/* --- Y2K / FIERCE DESIGN SYSTEM (PINK & BLUE EDITION) --- */
 :root {
-    --bg-color: #f8f9fa;
-    --card-bg: #ffffff;
-    --text-main: #2d3436;
-    --accent: #2d3436; /* Charcoal Black */
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
-    --radius: 16px;
+    --hot-pink: #ff00ff;
+    --electric-blue: #00ffff; /* Changed from Cyan to Electric Blue */
+    --deep-purple: #8a2be2;   /* New accent color */
+    --white: #ffffff;
+    --black: #000000;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* CHANGED: Gradient now goes Pink -> White -> Electric Blue */
+    background: linear-gradient(180deg, #ff99cc 0%, #ffffff 45%, #a6e7ff 100%);
     min-height: 100vh;
-    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    color: var(--black);
+    padding: 20px;
+    overflow-x: hidden;
 }
 
 /* --- HEADER --- */
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+    background: rgba(255, 255, 255, 0.4); /* More transparent */
 }
 
 h1 {
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 3rem;
+    letter-spacing: -2px;
+    /* CHANGED: Shadow is now Blue instead of Pink */
+    text-shadow: 2px 2px 0px var(--electric-blue);
 }
 
-p.subtitle {
-    color: #888;
-    font-size: 0.9rem;
-    font-weight: 300;
+.status-bar {
+    background-color: var(--hot-pink); /* Pink background for contrast */
+    color: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 10px;
+    box-shadow: 3px 3px 0px black;
 }
 
-/* --- THE STAGE (OUTFIT AREA) --- */
+/* --- THE STAGE --- */
 .stage {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Side by side */
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     max-width: 800px;
-    width: 100%;
-    margin-bottom: 40px;
+    margin: 0 auto 40px auto;
 }
 
+/* --- THE CARD --- */
 .card {
-    background: var(--card-bg);
-    padding: 15px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card h3 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #aaa;
-    margin-bottom: 15px;
-}
-
-/* Image handling to ensure they look uniform regardless of size */
-.img-wrapper {
-    width: 100%;
-    height: 400px; /* Fixed height makes it look organized */
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: #f0f0f0;
+    background: transparent;
     position: relative;
+    padding: 10px;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border: 1px solid black;
+    background: white;
+    z-index: 1;
 }
 
 img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This crops the image to fill the box perfectly */
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    object-fit: cover;
+    filter: contrast(1.1) saturate(1.1);
 }
 
-img.loaded {
-    opacity: 1;
+/* Crop Marks */
+.img-wrapper::before, .img-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: black;
+    z-index: 2;
+}
+.img-wrapper::before { top: -3px; left: -3px; box-shadow: calc(100% + 6px) 0 0 black; }
+.img-wrapper::after { bottom: -3px; left: -3px; box-shadow: calc(100% + 6px) 0 0 black; }
+
+.heart-sticker {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5rem;
+    z-index: 3;
+    text-shadow: 2px 2px 0px white;
+    color: var(--hot-pink);
+}
+
+.card h3 {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    background: black;
+    color: var(--electric-blue); /* Text is now Blue */
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    transform: rotate(-2deg);
 }
 
 /* --- CONTROLS --- */
 .controls {
     text-align: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: 90%;
+    max-width: 400px;
 }
 
 button {
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    padding: 18px 40px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 600;
+    width: 100%;
+    background: var(--white);
+    color: var(--black);
+    border: 1px solid black;
+    padding: 15px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.2rem;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(45, 52, 54, 0.3);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-button:hover {
-    background-color: #000;
-    transform: scale(1.02);
+    /* CHANGED: Hard shadow is now Blue */
+    box-shadow: 5px 5px 0px var(--electric-blue);
+    transition: transform 0.1s;
 }
 
 button:active {
-    transform: scale(0.98);
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0px var(--electric-blue);
 }
 
-/* --- LOADING SPINNER --- */
-.loader {
-    display: none; /* Hidden by default */
-    width: 24px;
-    height: 24px;
-    border: 3px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+button:hover {
+    /* CHANGED: Hover color is now soft pink */
+    background: #ffc0cb;
 }
 
 /* --- MOBILE ADJUSTMENTS --- */
 @media (max-width: 600px) {
-    .stage {
-        grid-template-columns: 1fr; /* Stack vertically on phones */
-    }
-    .img-wrapper {
-        height: 350px;
-    }
+    .stage { grid-template-columns: 1fr; }
+    .img-wrapper { height: 350px; }
+    h1 { font-size: 2rem; }
 }
