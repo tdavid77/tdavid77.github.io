@@ -147,4 +147,4 @@ function updateImages(topUrl, bottomUrl) {
 }
 
 // Initialize
-loadWardrobe();
+await loadWardrobe();
