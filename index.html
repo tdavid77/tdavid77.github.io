@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curated Closet</title>
+    <title>Fierce Closet</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,28 +15,74 @@
 </header>
 
 <main class="stage">
+    <div id="affirmation-window">
+        <div class="affirmation-header">A NOTE 2 U</div>
+        <p id="affirmation-text"></p>
+    </div>
     <div class="card">
-        <h3>Top Selection</h3>
+        <h3>Hat</h3>
         <div class="img-wrapper">
-            <span class="heart-sticker">♥</span>
+            <img id="hat-img" src="" alt="Hat">
+        </div>
+    </div>
+    <div class="card">
+        <h3>Coat</h3>
+        <div class="img-wrapper">
+            <img id="coat-img" src="" alt="Coat or Jacket">
+        </div>
+    </div>
+    <div class="card">
+        <h3>Top</h3>
+        <div class="img-wrapper">
             <img id="top-img" src="" alt="Top">
         </div>
     </div>
-
     <div class="card">
-        <h3>Bottom Selection</h3>
+        <h3>Bottom</h3>
         <div class="img-wrapper">
-            <span class="heart-sticker">♥</span>
             <img id="bottom-img" src="" alt="Bottom">
         </div>
     </div>
+    <div class="card">
+        <h3>Shoes</h3>
+        <div class="img-wrapper">
+            <img id="shoes-img" src="" alt="Shoes">
+        </div>
+    </div>
+    <div class="card">
+        <h3>Bag</h3>
+        <div class="img-wrapper">
+            <img id="bag-img" src="" alt="Bag">
+        </div>
+    </div>
 </main>
+
+<footer class="site-footer">
+    <div class="footer-column">
+        <h4>CONTACTS</h4>
+        <p>+36 30 548 9786</p>
+        <p>fiercecloset@gmail.com</p>
+        <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-center-art">
+        <p>"Waiting for your call..."</p>
+    </div>
+    <div class="footer-column">
+        <h4>ADDRESS</h4>
+        <p>Budapest, 6. district 21.</p>
+        <p>Mon-Fri: 9:00 to 18:00</p>
+        <div class="social-icons">
+            <span>IG</span> <span>YT</span> <span>X</span> <span>FB</span>
+        </div>
+    </div>
+</footer>
 
 <div class="controls">
     <button onclick="generateSmartOutfit()">
         Roll The Dice 🎲
     </button>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>

@@ -159,3 +159,123 @@ button:hover {
     .img-wrapper { height: 350px; }
     h1 { font-size: 2rem; }
 }
+/* --- AFFIRMATION WINDOW --- */
+#affirmation-window {
+    position: fixed;
+    top: 250px;
+    right: 20px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--black);
+    box-shadow: 4px 4px 0px var(--deep-purple);
+    z-index: 50;
+    font-family: 'Courier New', monospace;
+}
+
+.affirmation-header {
+    background: var(--deep-purple);
+    color: var(--white);
+    padding: 3px 8px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid var(--black);
+}
+
+#affirmation-text {
+    padding: 20px;
+    font-size: 1.2rem; /* Adjusted size for readability */
+    line-height: 1.5;
+    text-align: center;
+    color: var(--black);
+    font-family: 'Times New Roman', Times, serif; /* Changed to a serif font */
+    font-style: italic; /* Added italic style */
+}
+
+/* On smaller screens, make the affirmation window part of the main content flow */
+@media (max-width: 1100px) {
+    #affirmation-window {
+        position: relative; /* Un-fix it */
+        top: auto;
+        right: auto;
+        width: auto; /* Let it fill the grid area */
+        margin-bottom: 15px;
+        grid-column: 1 / -1; /* Make it span the full width of the grid */
+    }
+}
+/* --- FOOTER --- */
+.site-footer {
+    background-color: var(--hot-pink);
+    color: var(--black);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    margin-bottom: 100px; /* To clear fixed button */
+}
+
+.footer-column {
+    flex: 1;
+}
+
+.footer-column:last-child {
+    text-align: right;
+}
+
+.footer-column h4 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.footer-column p {
+    margin-bottom: 5px;
+}
+
+.footer-column a {
+    color: var(--black);
+    text-decoration: underline;
+}
+
+.footer-center-art {
+    flex: 2;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons span {
+    border: 1px solid var(--black);
+    padding: 2px 5px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-column, .footer-center-art {
+        flex: none;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .footer-column:last-child {
+        text-align: center;
+        margin-bottom: 0;
+    }
+}
