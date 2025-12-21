@@ -1,6 +1,6 @@
 // --- CONFIGURATION ---
-const username = 'YOUR_USERNAME';
-const repo = 'YOUR_REPO_NAME';
+const username = 'tdavid77';
+const repo = 'tdavid77.github.io';
 const path = 'images';
 // ---------------------
 
@@ -147,6 +147,4 @@ function updateImages(topUrl, bottomUrl) {
 }
 
 // Initialize
-(async () => {
-    await loadWardrobe();
-})();
+await loadWardrobe();
