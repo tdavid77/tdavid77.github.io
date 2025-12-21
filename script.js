@@ -100,36 +100,39 @@ function calculateCompatibility(top, bottom) {
 function generateSmartOutfit() {
     if (tops.length === 0 || bottoms.length === 0) return;
 
+    const MINIMUM_SCORE = 50; // Outfits must score at least this high
+
     // 1. Pick a Random Top to start with
     const randomTop = tops[Math.floor(Math.random() * tops.length)];
 
-    // 2. Score every single bottom against this top
-    let bestBottom = null;
-    let highestScore = -999;
-    let bestReasons = [];
+    // 2. Find all bottoms that are a "good enough" match
+    const goodMatches = bottoms
+        .map(bottom => {
+            const result = calculateCompatibility(randomTop, bottom);
+            return { bottom, result };
+        })
+        .filter(match => match.result.score >= MINIMUM_SCORE);
 
-    // Shuffle bottoms first so we don't always pick the same "best" one if scores tie
-    const shuffledBottoms = bottoms.toSorted(() => 0.5 - Math.random());
+    // 3. If we found any good matches, pick the best one
+    if (goodMatches.length > 0) {
+        // Sort by score descending to find the best match
+        goodMatches.sort((a, b) => b.result.score - a.result.score);
+        const bestMatch = goodMatches[0];
 
-    shuffledBottoms.forEach(bottom => {
-        const result = calculateCompatibility(randomTop, bottom);
+        // Display Result
+        updateImages(randomTop.url, bestMatch.bottom.url);
 
-        // We want the best match, but we also want variety.
-        // If the score is "Good Enough" (e.g. > 50), it has a chance to win.
-        if (result.score > highestScore) {
-            highestScore = result.score;
-            bestBottom = bottom;
-            bestReasons = result.reasons;
-        }
-    });
-
-    // 3. Display Result
-    updateImages(randomTop.url, bestBottom.url);
-
-    // Optional: Show why the AI picked it (for debugging/fun)
-    console.log(`AI Choice: Score ${highestScore}`);
-    console.log(`Reasons: ${bestReasons.join(', ')}`);
+        console.log(`AI Choice: Score ${bestMatch.result.score}`);
+        console.log(`Reasons: ${bestMatch.result.reasons.join(', ')}`);
+    } else {
+        // 4. If no good matches, try again or inform the user
+        console.log(`No suitable outfit found for the selected top. Trying again...`);
+        // We can recursively call the function, but add a safeguard to prevent infinite loops
+        // For simplicity, we'll just call it once.
+        setTimeout(generateSmartOutfit, 100);
+    }
 }
+
 
 function updateImages(topUrl, bottomUrl) {
     const topImg = document.getElementById("top-img");
