@@ -10,30 +10,31 @@
 <body>
 
 <header>
-    <h1>My Personal Stylist</h1>
-    <p class="subtitle" id="status-text">Connecting to wardrobe...</p>
+    <h1>Fierce Closet</h1>
+    <div class="status-bar" id="status-text">LOADING ASSETS...</div>
 </header>
 
 <main class="stage">
     <div class="card">
-        <h3>Top</h3>
+        <h3>Top Selection</h3>
         <div class="img-wrapper">
+            <span class="heart-sticker">♥</span>
             <img id="top-img" src="" alt="Top">
         </div>
     </div>
 
     <div class="card">
-        <h3>Bottom</h3>
+        <h3>Bottom Selection</h3>
         <div class="img-wrapper">
+            <span class="heart-sticker">♥</span>
             <img id="bottom-img" src="" alt="Bottom">
         </div>
     </div>
 </main>
 
 <div class="controls">
-    <button id="shuffle-btn" onclick="generateOutfit()">
-        <span class="loader" id="btn-loader"></span>
-        <span id="btn-text">Shuffle Outfit</span>
+    <button onclick="generateSmartOutfit()">
+        Roll The Dice 🎲
     </button>
 </div>
 <script src="script.js"></script>
